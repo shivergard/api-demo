@@ -10,6 +10,27 @@
 					<div class="row">
 					  <div class="col-md-6">
 					  		<h4>Params</h4>
+					  		<select class="form-control" id="methods">
+					  			<option>--none--</option>
+					  		@foreach($methods as $method)
+								  <option>{{$method->name}}</option>
+					  		@endforeach
+					  		</select>
+
+  							<strong>Params</strong>
+
+  							<form>
+							  <div class="form-group">
+							    <label for="key">Key</label>
+							    <input type="key" class="form-control" id="key" placeholder="Key">
+							  </div>
+							  <div class="form-group">
+							    <label for="secret">Secret</label>
+							    <input type="password" class="form-control" id="secret" placeholder="Secret">
+							  </div>
+							  <div id="additional_params"></div>
+							  <button type="submit" class="btn btn-default">POST</button>
+							</form>
 
 					  </div>
 					  <div class="col-md-6">

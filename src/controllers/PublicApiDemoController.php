@@ -9,6 +9,10 @@ use \Carbon;
 use \Config;
 
 
+use \Shivergard\ApiDemo\Methods;
+use \Shivergard\ApiDemo\Params;
+
+
 class PublicApiDemoController extends \Shivergard\ApiDemo\PackageController {
 
 	//empty constructor
@@ -16,7 +20,10 @@ class PublicApiDemoController extends \Shivergard\ApiDemo\PackageController {
 
 
 	public function demo(){
-		return view('api-demo::demo');
+
+		$methods = Methods::all();
+
+		return view('api-demo::demo' , array('methods' => $methods));
 	}
 
 }
