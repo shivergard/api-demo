@@ -1,0 +1,35 @@
+<?php
+use Illuminate\Support\Facades\Route;
+use \Config;
+use \Redirect;
+/*
+|--------------------------------------------------------------------------
+| Application Routes
+|--------------------------------------------------------------------------
+|
+| Here is where you can register all of the routes for an application.
+| It's a breeze. Simply tell Laravel the URIs it should respond to
+| and give it the controller to call when that URI is requested.
+|
+*/
+
+Route::get('/public-demo/v1/' , 'Shivergard\ApiDemo\PublicApiDemoController@demo');
+Route::get('/api-demo/init' , 'Shivergard\ApiDemo\ApiDemoController@init');
+
+Route::get('/api-demo/{method}', function($method)
+{
+    $controller = new Shivergard\ApiDemo\ApiDemoController;
+    if (method_exists ( $controller , $method ))
+    	return $controller->{$method}();
+    else
+    	return Redirect::to('/');
+});
+
+Route::get('/api-demo/{method}/{param}', function($method , $param)
+{
+    $controller = new Shivergard\ApiDemo\ApiDemoController;
+    if (method_exists ( $controller , $method ))
+    	return $controller->{$method}($param);
+    else
+    	return Redirect::to('/');
+});
