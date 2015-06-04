@@ -29,7 +29,7 @@
 							    <input type="password" class="form-control" id="secret" placeholder="Secret">
 							  </div>
 							  <div id="additional_params"></div>
-							  <button type="submit" class="btn btn-default">POST</button>
+							  <button type="submit" id="post_api" class="btn btn-default">POST</button>
 							</form>
 
 					  </div>
@@ -68,7 +68,9 @@
     	}
 
     	if (typeof data.params != 'undefined'){
-
+    		$.each(data.params, function( k, v ) {
+    			$('#additional_params').append('<div class="form-group"><label for="secret">' + v.name + '</label> <pre>' + v.description + '</pre><input class="form-control" id="' + v.name + '" placeholder="' + v.name + '"></div>');
+			});
     	}
     	
     };
@@ -81,6 +83,12 @@
 			$('#additional_params').html('');
 			window.ajaxCall({id : $(this).val()});
 		});
+
+		$('#post_api').click(
+			function(event){
+				event.preventDefault();
+			}
+		);
 	});
 
 </script>
