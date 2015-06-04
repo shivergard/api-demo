@@ -14,7 +14,10 @@ use \Redirect;
 */
 
 Route::get('/public-demo/v1/' , 'Shivergard\ApiDemo\PublicApiDemoController@demo');
+Route::get('/public-demo/v1/params' , 'Shivergard\ApiDemo\PublicApiDemoController@getParams');
 Route::get('/api-demo/init' , 'Shivergard\ApiDemo\ApiDemoController@init');
+Route::resource('/api-demo/methods' , 'Shivergard\ApiDemo\ApiDemoController');
+
 
 Route::get('/api-demo/{method}', function($method)
 {

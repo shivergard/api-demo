@@ -20,3 +20,12 @@ and add service provider
 		...
       'Shivergard\ApiDemo\ApiDemoServiceProvider',
 		...
+
+To start use :
+
+  php artisan api-demo:init
+
+To get user creditals
+  ¯\(°_o)/¯
+   Mail: root@ApiDemo.dev
+   Passowrd: api-demo

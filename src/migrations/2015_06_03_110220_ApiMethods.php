@@ -24,6 +24,7 @@ class ApiMethods extends Migration {
 		Schema::create('api_params', function(Blueprint $table)
 		{
 			$table->increments('id');
+			$table->integer('param_id')->unsigned();
 			$table->string('name');
 			$table->string('description');
 			$table->timestamps();

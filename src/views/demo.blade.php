@@ -10,11 +10,36 @@
 					<div class="row">
 					  <div class="col-md-6">
 					  		<h4>Params</h4>
+					  		<select class="form-control" id="methods">
+					  			<option>--none--</option>
+					  		@foreach($methods as $method)
+								  <option value="{{$method->id}}">{{$method->name}}</option>
+					  		@endforeach
+					  		</select>
+
+  							<strong>Method</strong>
+
+  							<form>
+							  <div class="form-group">
+							    <label for="key">Key</label>
+							    <input type="key" class="form-control" id="key" placeholder="Key">
+							  </div>
+							  <div class="form-group">
+							    <label for="secret">Secret</label>
+							    <input type="password" class="form-control" id="secret" placeholder="Secret">
+							  </div>
+							  <div id="additional_params"></div>
+							  <button type="submit" class="btn btn-default">POST</button>
+							</form>
 
 					  </div>
 					  <div class="col-md-6">
+					  		<h4>Description</h4>
+					  		<pre id="description">Select method</pre>
+					  		<h4>Request</h4>
+					  		<pre id="request">Select method</pre>
 					  		<h4>Response</h4>
-					  		<pre>{"status":0}</pre>
+					  		<pre id="response">{"status":0}</pre>
 					  </div>
 					</div>
 				</div>
@@ -22,4 +47,43 @@
 		</div>
 	</div>
 </div>
+@endsection
+
+@section('scripts')
+<script type="text/javascript">
+
+    window.ajaxCall = function (request){
+    	$.ajax({
+		  dataType: "json",
+		  url: "{{action("\Shivergard\ApiDemo\PublicApiDemoController@getParams")}}",
+		  data: request,
+		  success: window.ajaxSuccess
+		});
+    };
+
+    window.ajaxSuccess = function (data){
+    	if (typeof data.instance != 'undefined'){
+    		$('#request').html(data.instance.path);
+    		$('#description').html(data.instance.description);
+    	}
+
+    	if (typeof data.params != 'undefined'){
+
+    	}
+    	
+    };
+
+    $(function() {
+
+    	$( "#methods" ).change(function() {
+	    	$('#request').html('Select method');
+			$('#description').html('Select method');
+			$('#additional_params').html('');
+			window.ajaxCall({id : $(this).val()});
+		});
+	});
+
+</script>
+methods
+
 @endsection
