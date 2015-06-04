@@ -1,6 +1,6 @@
 <?php
 use Illuminate\Support\Facades\Route;
-use \Redirect;
+
 /*
 |--------------------------------------------------------------------------
 | Application Routes
@@ -25,7 +25,7 @@ Route::get('/api-demo/{method}', function($method)
     if (method_exists ( $controller , $method ))
     	return $controller->{$method}();
     else
-    	return Redirect::to('/');
+    	return \Redirect::to('/');
 });
 
 Route::get('/api-demo/{method}/{param}', function($method , $param)
@@ -34,5 +34,5 @@ Route::get('/api-demo/{method}/{param}', function($method , $param)
     if (method_exists ( $controller , $method ))
     	return $controller->{$method}($param);
     else
-    	return Redirect::to('/');
+    	return \Redirect::to('/');
 });
