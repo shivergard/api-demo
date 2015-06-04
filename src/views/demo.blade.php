@@ -10,38 +10,29 @@
 					<div class="row">
 					  <div class="col-md-6">
 					  		<h4>Params</h4>
-					  		<select class="form-control" id="methods">
+					  		<form id="post_form">
+					  		<select class="form-control" id="methods" name="id">
 					  			<option>--none--</option>
 					  		@foreach($methods as $method)
-<<<<<<< HEAD
 								  <option value="{{$method->id}}">{{$method->name}}</option>
 					  		@endforeach
 					  		</select>
 
   							<strong>Method</strong>
-=======
-								  <option>{{$method->name}}</option>
-					  		@endforeach
-					  		</select>
 
-  							<strong>Params</strong>
->>>>>>> 5a40271ff312ef7b1b84f57974f706ad4a009bd2
-
-  							<form>
+  							
+  								{!! Form::token() !!}
 							  <div class="form-group">
 							    <label for="key">Key</label>
-							    <input type="key" class="form-control" id="key" placeholder="Key">
+							    <input type="key" name="key" class="form-control" id="key" placeholder="Key">
 							  </div>
 							  <div class="form-group">
 							    <label for="secret">Secret</label>
-							    <input type="password" class="form-control" id="secret" placeholder="Secret">
+							    <input type="password" name="secret" class="form-control" id="secret" placeholder="Secret">
 							  </div>
 							  <div id="additional_params"></div>
-<<<<<<< HEAD
 							  <button type="submit" id="post_api" class="btn btn-default">POST</button>
-=======
-							  <button type="submit" class="btn btn-default">POST</button>
->>>>>>> 5a40271ff312ef7b1b84f57974f706ad4a009bd2
+
 							</form>
 
 					  </div>
@@ -64,12 +55,21 @@
 @section('scripts')
 <script type="text/javascript">
 
-    window.ajaxCall = function (request){
+    window.ajaxCall = function (request , url , callback){
+
+    	if (typeof url == 'undefined'){
+    		url = "{{action("\Shivergard\ApiDemo\PublicApiDemoController@getParams")}}";
+    	}
+
+    	if (typeof callback == 'undefined'){
+    		callback = window.ajaxSuccess;
+    	}
+
     	$.ajax({
 		  dataType: "json",
-		  url: "{{action("\Shivergard\ApiDemo\PublicApiDemoController@getParams")}}",
+		  url: url,
 		  data: request,
-		  success: window.ajaxSuccess
+		  success: callback
 		});
     };
 
@@ -81,11 +81,15 @@
 
     	if (typeof data.params != 'undefined'){
     		$.each(data.params, function( k, v ) {
-    			$('#additional_params').append('<div class="form-group"><label for="secret">' + v.name + '</label> <pre>' + v.description + '</pre><input class="form-control" id="' + v.name + '" placeholder="' + v.name + '"></div>');
+    			$('#additional_params').append('<div class="form-group"><label for="secret">' + v.name + '</label> <pre>' + v.description + '</pre><input class="form-control" name="' + v.name + '" id="' + v.name + '" placeholder="' + v.name + '"></div>');
 			});
     	}
     	
     };
+
+    window.previewProgress = function (data){
+    	$('#response').html(data.response);
+    }
 
     $(function() {
 
@@ -99,11 +103,17 @@
 		$('#post_api').click(
 			function(event){
 				event.preventDefault();
+				postData = $('#post_form').serialize();
+				if ($( "#methods" ).val() > 0){
+					window.ajaxCall(postData , '{{ action("\Shivergard\ApiDemo\PublicApiDemoController@postRequest") }}' , window.previewProgress);
+				}else{
+					$('#description').html('invalid POST method');
+				}
+				
 			}
 		);
 	});
 
 </script>
-methods
 
 @endsection

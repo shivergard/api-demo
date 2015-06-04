@@ -12,6 +12,10 @@ use \Config;
 use \Shivergard\ApiDemo\Methods;
 use \Shivergard\ApiDemo\Params;
 
+use \GuzzleHttp\Client;
+use \GuzzleHttp\Exception\BadResponseException;
+
+
 
 class PublicApiDemoController extends \Shivergard\ApiDemo\PackageController {
 
@@ -40,6 +44,31 @@ class PublicApiDemoController extends \Shivergard\ApiDemo\PackageController {
 	        	$return['params'] = $instance->params()->get()->toArray();
         }
         return \Response::json($return);		
+	}
+
+	public function postRequest(){
+		if(!\Request::ajax())
+            return \Redirect::to(action("\Shivergard\ApiDemo\PublicApiDemoController@demo"));
+
+        $return = array('response' => 'invalid params');
+
+        //do the guzzle request
+        $instance = Methods::where('id', \Input::get('id'));
+        if ($instance->count() > 0){
+        	$client = new Client();
+        	$options = array('query' => \Input::all());
+
+        	try {
+        		$response = $client->post($instance->first()->path, $options);
+        		$return['response'] = json_encode($response->json());
+
+	        } catch (BadResponseException $ex) {
+	            $return['response'] =  $ex->getResponse()->getBody();
+	        }	
+
+        }
+
+        return \Response::json($return);
 	}
 
 }
