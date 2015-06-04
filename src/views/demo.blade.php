@@ -13,11 +13,19 @@
 					  		<select class="form-control" id="methods">
 					  			<option>--none--</option>
 					  		@foreach($methods as $method)
+<<<<<<< HEAD
 								  <option value="{{$method->id}}">{{$method->name}}</option>
 					  		@endforeach
 					  		</select>
 
   							<strong>Method</strong>
+=======
+								  <option>{{$method->name}}</option>
+					  		@endforeach
+					  		</select>
+
+  							<strong>Params</strong>
+>>>>>>> 5a40271ff312ef7b1b84f57974f706ad4a009bd2
 
   							<form>
 							  <div class="form-group">
@@ -29,7 +37,11 @@
 							    <input type="password" class="form-control" id="secret" placeholder="Secret">
 							  </div>
 							  <div id="additional_params"></div>
+<<<<<<< HEAD
 							  <button type="submit" id="post_api" class="btn btn-default">POST</button>
+=======
+							  <button type="submit" class="btn btn-default">POST</button>
+>>>>>>> 5a40271ff312ef7b1b84f57974f706ad4a009bd2
 							</form>
 
 					  </div>

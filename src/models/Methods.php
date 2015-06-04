@@ -10,6 +10,7 @@ class Methods extends \Shivergard\ApiDemo\BaseModel {
 
 	protected $table = 'api_methods';
 
+
 	public function params(){
 		return $this->hasMany('\Shivergard\ApiDemo\Params', 'param_id', 'id');
 	}

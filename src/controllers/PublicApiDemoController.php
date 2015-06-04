@@ -24,6 +24,7 @@ class PublicApiDemoController extends \Shivergard\ApiDemo\PackageController {
 		$methods = Methods::all();
 
 		return view('api-demo::demo' , array('methods' => $methods));
+
 	}
 
 	public function getParams(){
