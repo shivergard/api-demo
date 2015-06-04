@@ -20,10 +20,10 @@ class ApiDemoServiceProvider extends ServiceProvider {
 	{
 
 		//config publish
-		$this->publishes([
+		$this->publishes(array(
 		    __DIR__.'/api-demo.php' => config_path('api-demo.php'),
 		    realpath(__DIR__ .'/../../migrations') => $this->app->databasePath().'/migrations',
-		]);
+		));
 
 		require __DIR__ .'/../../routes.php';
 		$this->loadViewsFrom(__DIR__.'/../../views', 'api-demo');
