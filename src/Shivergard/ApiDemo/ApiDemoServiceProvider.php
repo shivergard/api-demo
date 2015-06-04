@@ -20,10 +20,13 @@ class ApiDemoServiceProvider extends ServiceProvider {
 	{
 
 		//config publish
-		$this->publishes(array(
+
+		$publishData = array(
 		    __DIR__.'/api-demo.php' => config_path('api-demo.php'),
 		    realpath(__DIR__ .'/../../migrations') => $this->app->databasePath().'/migrations',
-		));
+		);
+
+		$this->publishes($publishData);
 
 		require __DIR__ .'/../../routes.php';
 		$this->loadViewsFrom(__DIR__.'/../../views', 'api-demo');
@@ -34,7 +37,7 @@ class ApiDemoServiceProvider extends ServiceProvider {
 	 * Register the service provider.
 	 *
 	 * @return void
-	 */
+	 */#6 [internal function]: Illuminate\Foundation\Application->Illuminate\Foundation\{closure}(Object(Shivergard\ApiDemo\ApiDemoServiceProvider), 23)
 	public function register()
 	{
 		//
