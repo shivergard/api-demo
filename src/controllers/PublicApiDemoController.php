@@ -19,35 +19,35 @@ use \GuzzleHttp\Exception\BadResponseException;
 
 class PublicApiDemoController extends \Shivergard\ApiDemo\PackageController {
 
-	//empty constructor
-	public function __construct(){}
+    //empty constructor
+    public function __construct(){}
 
 
-	public function demo(){
+    public function demo(){
 
-		$methods = Methods::all();
+        $methods = Methods::all();
 
-		return view('api-demo::demo' , array('methods' => $methods));
+        return view('api-demo::demo' , array('methods' => $methods));
 
-	}
+    }
 
-	public function getParams(){
-		if(!\Request::ajax())
+    public function getParams(){
+        if(!\Request::ajax())
             return \Redirect::to(action("\Shivergard\ApiDemo\PublicApiDemoController@demo"));
         $return = array('instance' , 'params');
         $instance = Methods::where('id', \Input::get('id'));
         if ($instance->count() > 0){
-        	$return['instance'] = $instance->first()->toArray();
-        	$instance = $instance->first();
+            $return['instance'] = $instance->first()->toArray();
+            $instance = $instance->first();
 
-	        if ($instance->params()->count() > 0)
-	        	$return['params'] = $instance->params()->get()->toArray();
+            if ($instance->params()->count() > 0)
+                $return['params'] = $instance->params()->get()->toArray();
         }
-        return \Response::json($return);		
-	}
+        return \Response::json($return);        
+    }
 
-	public function postRequest(){
-		if(!\Request::ajax())
+    public function postRequest(){
+        if(!\Request::ajax())
             return \Redirect::to(action("\Shivergard\ApiDemo\PublicApiDemoController@demo"));
 
         $return = array('response' => 'invalid params');
@@ -55,20 +55,25 @@ class PublicApiDemoController extends \Shivergard\ApiDemo\PackageController {
         //do the guzzle request
         $instance = Methods::where('id', \Input::get('id'));
         if ($instance->count() > 0){
-        	$client = new Client();
-        	$options = array('query' => \Input::all());
+            $client = new Client();
+            $options = array('query' => \Input::all());
 
-        	try {
-        		$response = $client->post($instance->first()->path, $options);
-        		$return['response'] = json_encode($response->json());
+            try {
+                if ($instance->first()->type == 'POST'){
+                    $response = $client->post($instance->first()->path, $options);
+                }else{
+                    $response = $client->get($instance->first()->path, $options);
+                }
+                
+                $return['response'] = json_encode($response->json());
 
-	        } catch (BadResponseException $ex) {
-	            $return['response'] =  $ex->getResponse()->getBody();
-	        }	
+            } catch (BadResponseException $ex) {
+                $return['response'] =  'problems : '.$ex->getResponse()->getBody(); //$ex->getResponse()->getBody();
+            }   
 
         }
 
         return \Response::json($return);
-	}
+    }
 
 }
