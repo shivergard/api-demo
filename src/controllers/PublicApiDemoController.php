@@ -65,7 +65,7 @@ class PublicApiDemoController extends \Shivergard\ApiDemo\PackageController {
                     $response = $client->get($instance->first()->path, $options);
                 }
                 
-                $return['response'] = json_encode($response->json());
+                $return['response'] = $response->getBody(true)->getContents();
 
             } catch (BadResponseException $ex) {
                 $return['response'] =  'problems : '.$ex->getResponse()->getBody(); //$ex->getResponse()->getBody();
