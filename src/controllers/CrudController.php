@@ -3,9 +3,6 @@
 use \Session;
 use \Shivergard\ApiDemo;
 
-use Illuminate\Html\HtmlFacade;
-use Illuminate\Html\FormFacade;
-
 use \Input;
 use \Validator;
 use \File;
@@ -161,9 +158,7 @@ class CrudController extends \Shivergard\ApiDemo\PackageController {
 
         $viewDetails = array(
             'fields' => $this->getAllColumnsNames($list , true),
-            'controller' => $this->getClassName(true),
-            'form' => new HtmlFacade(),
-            'html' => new FormFacade()
+            'controller' => $this->getClassName(true)
         );
 
         $view = View($this->bladeDir.'.create' , $viewDetails);
