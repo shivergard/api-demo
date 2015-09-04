@@ -19,7 +19,7 @@
                 </div>
             @endforeach
 
-            <a href="{{action('\Shivergard\ApiDemo\ParamsController' , $list->id)}}"/>Param List </a>
+            <a href="{{action('\Shivergard\ApiDemo\ParamsController@store' , $list->id)}}"/>Param List </a>
         </div>
     </div>
 </div>
