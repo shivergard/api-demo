@@ -12,10 +12,10 @@
         @foreach($fields as $col)
             <div class="form-group">
                 <div class="col-md-4">
-                    {!! $form->label($col, $col) !!}
+                    {!! Form::label($col, $col) !!}
                 </div>
                 <div class="col-md-6">
-                    {!! $form->text($col, Input::old($col), array('class' => 'form-control')) !!}
+                    {!! Form::text($col, Input::old($col), array('class' => 'form-control')) !!}
                 </div>
             </div>
         @endforeach
