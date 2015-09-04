@@ -9,9 +9,9 @@ use \Config;
 use \Route;
 
 
-class ApiDemoController extends \Shivergard\ApiDemo\CrudController {
+class ParamsController extends \Shivergard\ApiDemo\CrudController {
 
-    public $model = "\Shivergard\ApiDemo\Methods";
+    public $model = "\Shivergard\ApiDemo\Params";
 
     public function init(){
         return view('api-demo::api-demo');
