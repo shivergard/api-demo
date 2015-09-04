@@ -8,7 +8,8 @@
             <button id="reset_filter" type="button" onclick="window.location = '{{ action($controller."@create") }}'" class="btn btn-primary">Create</button>
         </div>
         <div class="col-md-8 col-md-offset-2">
-            <h4>Methods view {{ $list->name }}</h4>
+            <h4>Methods view <strong>{{ $list->name }}</strong></h4>
+
             @foreach($fields as $col)
                 <div class="form-group">
                     <div class="col-md-4"><strong>{{$col}}:</strong></div>
@@ -17,6 +18,8 @@
                     </div>
                 </div>
             @endforeach
+
+            <a href="{{action('Shivergard\ApiDemo\ParamsController' , $list->id)}}"/>Param List </a>
         </div>
     </div>
 </div>

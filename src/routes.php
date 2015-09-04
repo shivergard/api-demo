@@ -17,22 +17,23 @@ Route::get('/public-demo/v1/params' , 'Shivergard\ApiDemo\PublicApiDemoControlle
 Route::get('/public-demo/v1/request' , 'Shivergard\ApiDemo\PublicApiDemoController@postRequest');
 Route::get('/api-demo/init' , 'Shivergard\ApiDemo\ApiDemoController@init');
 Route::resource('/api-demo/methods' , 'Shivergard\ApiDemo\ApiDemoController');
+Route::resource('/api-demo/params/{method}/crud' , 'Shivergard\ApiDemo\ParamsController');
 
 
 Route::get('/api-demo/{method}', function($method)
 {
     $controller = new Shivergard\ApiDemo\ApiDemoController;
     if (method_exists ( $controller , $method ))
-    	return $controller->{$method}();
+        return $controller->{$method}();
     else
-    	return \Redirect::to('/');
+        return \Redirect::to('/');
 });
 
 Route::get('/api-demo/{method}/{param}', function($method , $param)
 {
     $controller = new Shivergard\ApiDemo\ApiDemoController;
     if (method_exists ( $controller , $method ))
-    	return $controller->{$method}($param);
+        return $controller->{$method}($param);
     else
-    	return \Redirect::to('/');
+        return \Redirect::to('/');
 });

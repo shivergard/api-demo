@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use \Carbon;
 use \Config;
+use \Route;
 
 
 class ApiDemoController extends \Shivergard\ApiDemo\CrudController {
@@ -15,6 +16,14 @@ class ApiDemoController extends \Shivergard\ApiDemo\CrudController {
     public function init(){
         return view('api-demo::api-demo');
     }
+
+
+    public function __construct(){
+        //set default method alltimes
+        $method = Route::current()->getParameter('method');
+        $this->constantFilters['param_id'] = $method;
+    }
+    
 
     /**
      * Display the specified resource.
