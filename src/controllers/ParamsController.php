@@ -33,10 +33,11 @@ class ParamsController extends \Shivergard\ApiDemo\SubCrudController {
     public function show($method, $id){
         $modelName = $this->model;
         $list = $modelName::find($id);
-        $view = view('api-demo::methods.view' , array(
+        $view = view('api-demo::sub_crud.view' , array(
                 'list' => $list,
                 'fields' => $this->getAllColumnsNames($list),
                 'controller' => $this->getClassName(true),
+                'method' => $method
         ));
 
         if (isset($this->layout) && $this->layout){
