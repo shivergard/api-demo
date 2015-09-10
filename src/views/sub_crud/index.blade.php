@@ -82,7 +82,7 @@
         <div class="col-md-6 col-md-offset-2">  
             {!! Form::submit('Filter', array('class' => 'btn btn-primary')) !!}
             <button id="reset_filter" type="button"  class="btn btn-primary">Reset</button>
-            <button type="button" onclick="window.location = '{{ action($controller."@create") }}'" class="btn btn-primary">Create</button>
+            <button type="button" onclick="window.location = '{{ action($controller."@create" , array('method' => $method)) }}'" class="btn btn-primary">Create</button>
 
         </div>
     </form>
