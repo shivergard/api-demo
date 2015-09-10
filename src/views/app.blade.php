@@ -35,7 +35,7 @@
 
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
-                    <li><a href="/api-demo/init">Init</a></li>
+                    <li><a href="/public-demo/v1">Public</a></li>
                     <li><a href="{{action('\Shivergard\ApiDemo\ApiDemoController@store')}}">Methods</a></li>
                 </ul>
             </div>
