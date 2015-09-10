@@ -48,7 +48,7 @@ class SubCrudController extends \Shivergard\ApiDemo\CrudController {
      * Display the specified resource.
      * @param  int  $iddd @return Response
      */
-    public function show($id){
+    public function show($method , $id){
 
         $this->bladeDir = 'api-demo::sub_crud';
 
@@ -104,7 +104,7 @@ class SubCrudController extends \Shivergard\ApiDemo\CrudController {
      * @param  int  $id
      * @return Response
      */
-    public function edit($id){
+    public function edit($method , $id){
 
         $this->bladeDir = 'api-demo::sub_crud';
         
