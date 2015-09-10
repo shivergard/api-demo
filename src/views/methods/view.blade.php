@@ -20,6 +20,7 @@
             @endforeach
 
             <a href="{{action('\Shivergard\ApiDemo\ParamsController@store' , $list->id)}}"/>Param List </a>
+            <a href="{{action('\Shivergard\ApiDemo\OperationController@store' , $list->id)}}"/>Operation List </a>
         </div>
     </div>
 </div>

@@ -23,6 +23,8 @@ Route::resource('/api-demo/params/{method}/crud' , 'Shivergard\ApiDemo\ParamsCon
 Route::get('/api-demo/params/{method}/crud/create' , 'Shivergard\ApiDemo\ParamsController@create');
 Route::get('/api-demo/params/{method}/crud' , 'Shivergard\ApiDemo\ParamsController@index');
 
+Route::resource('/api-demo/operations/{method}/crud' , 'Shivergard\ApiDemo\OperationController');
+
 
 Route::get('/api-demo/{method}', function($method)
 {
