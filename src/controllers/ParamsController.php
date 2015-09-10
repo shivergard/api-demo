@@ -9,7 +9,7 @@ use \Config;
 use \Route;
 
 
-class ParamsController extends \Shivergard\ApiDemo\CrudController {
+class ParamsController extends \Shivergard\ApiDemo\SubCrudController {
 
     public $model = "\Shivergard\ApiDemo\Params";
 
@@ -22,6 +22,7 @@ class ParamsController extends \Shivergard\ApiDemo\CrudController {
         //set default method alltimes
         $method = Route::current()->getParameter('method');
         $this->constantFilters['param_id'] = $method;
+        parent::__construct();
     }
     
 
