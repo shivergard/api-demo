@@ -13,7 +13,7 @@ class SubCrudController extends \Shivergard\ApiDemo\CrudController {
 
 
 
-    public function index($method){
+    public function index(){
 
         $this->bladeDir = 'api-demo::sub_crud';
 
@@ -75,7 +75,7 @@ class SubCrudController extends \Shivergard\ApiDemo\CrudController {
      *
      * @return Response
      */
-    public function create($method){
+    public function create(){
 
         $this->bladeDir = 'api-demo::sub_crud';
 
