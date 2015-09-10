@@ -17,6 +17,8 @@ Route::get('/public-demo/v1/params' , 'Shivergard\ApiDemo\PublicApiDemoControlle
 Route::get('/public-demo/v1/request' , 'Shivergard\ApiDemo\PublicApiDemoController@postRequest');
 Route::get('/api-demo/init' , 'Shivergard\ApiDemo\ApiDemoController@init');
 Route::resource('/api-demo/methods' , 'Shivergard\ApiDemo\ApiDemoController');
+
+//complicated create
 Route::resource('/api-demo/params/{method}/crud' , 'Shivergard\ApiDemo\ParamsController');
 
 
