@@ -11,17 +11,50 @@ use \Route;
 
 class SubCrudController extends \Shivergard\ApiDemo\CrudController {
 
+
+
+    public function index(){
+
+        $this->bladeDir = 'api-demo::sub_crud';
+
+        //hardCode style @todo review please
+        $modelName = $this->model;
+        
+        if ($modelName::count() == 0)
+            return \Redirect::to(action($this->getClassName(true)."@create"));
+        $list = $modelName::orderBy('id', 'DESC');
+        $list = $this->getFilteredList($list)->paginate(4); 
+
+        $blankItem = new $modelName();
+
+        $view = view($this->bladeDir.'.index' , array(
+            'list' => $list,
+            'fields' => $this->getAllColumnsNames($blankItem),
+            'controller' => $this->getClassName(true),
+            'prefix' => $this->getClassName(),
+            'method' => Route::current()->getParameter('method'),
+        ));
+        
+        if (isset($this->layout) && $this->layout){
+            return View($this->layout , array('content' => $view));
+        }else{
+            return $view;
+        }
+
+        
+    }
+
     /**
      * Display the specified resource.
      * @param  int  $iddd @return Response
      */
     public function show($id){
 
-        $this->bladeDir = 'sub_crud';
+        $this->bladeDir = 'api-demo::sub_crud';
 
         $modelName = $this->model;
         $list = $modelName::find($id);
-        $view = view('api-demo::methods.view' , array(
+        $view = view($this->bladeDir.'.view' , array(
                 'list' => $list,
                 'fields' => $this->getAllColumnsNames($list),
                 'method' => Route::current()->getParameter('method'),
@@ -44,7 +77,7 @@ class SubCrudController extends \Shivergard\ApiDemo\CrudController {
      */
     public function create(){
 
-        $this->bladeDir = 'sub_crud';
+        $this->bladeDir = 'api-demo::sub_crud';
 
         $modelName = $this->model;
         $list = new $modelName();
@@ -73,7 +106,7 @@ class SubCrudController extends \Shivergard\ApiDemo\CrudController {
      */
     public function edit($id){
 
-        $this->bladeDir = 'sub_crud';
+        $this->bladeDir = 'api-demo::sub_crud';
         
         $modelName = $this->model;
         $list = $modelName::find($id);
