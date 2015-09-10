@@ -9,7 +9,7 @@ use \Config;
 use \Route;
 
 
-class SubCrudController extends \Shivergard\ApiDemo\CrudController {
+class SubCrudController extends \Shivergard\ApiDemo\BaseCrudController {
 
 
 
