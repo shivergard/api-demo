@@ -30,7 +30,7 @@ class ParamsController extends \Shivergard\ApiDemo\SubCrudController {
      * Display the specified resource.
      * @param  int  $iddd @return Response
      */
-    public function show($id){
+    public function show($method, $id){
         $modelName = $this->model;
         $list = $modelName::find($id);
         $view = view('api-demo::methods.view' , array(
