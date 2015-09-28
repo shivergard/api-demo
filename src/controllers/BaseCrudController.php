@@ -175,7 +175,12 @@ class BaseCrudController extends \Shivergard\ApiDemo\PackageController {
      * @param  int  $id
      * @return Response
      */
-    public function update($id){
+    public function update($param1 $param2){
+
+        if (Route::current()->getParameter('method') && trim(Route::current()->getParameter('method')) != '')
+            $id = $param2;
+        else
+            $id = $param1;
         // validate
         // read more on validation at http://laravel.com/docs/validation
 
@@ -210,9 +215,13 @@ class BaseCrudController extends \Shivergard\ApiDemo\PackageController {
      * @param  int  $id
      * @return Response
      */
-    public function destroy($id){
+    public function destroy($param1 $param2){
         // delete
-
+        if (Route::current()->getParameter('method') && trim(Route::current()->getParameter('method')) != '')
+            $id = $param2;
+        else
+            $id = $param1;
+        
         $modelName = $this->model;
         $itemCount = $modelName::where('id' , intval($id))->count();
 
@@ -223,7 +232,10 @@ class BaseCrudController extends \Shivergard\ApiDemo\PackageController {
         
         // redirect
         Session::flash('message', 'Successfully deleted !');
-        return \Redirect::to(action($this->getClassName(true)."@index"));
+        if (Route::current()->getParameter('method') && trim(Route::current()->getParameter('method')) != '')
+            return \Redirect::to(action($this->getClassName(true)."@index" , array('method' => Route::current()->getParameter('method'))));
+        else
+            return \Redirect::to(action($this->getClassName(true)."@index"));
     }
 
 }
