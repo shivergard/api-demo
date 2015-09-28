@@ -159,7 +159,11 @@ class BaseCrudController extends \Shivergard\ApiDemo\PackageController {
 
             // redirect
             \Session::flash('message', 'Successfully created!');
-            return \Redirect::to(action($this->getClassName(true)."@index"));
+
+            if (Route::current()->getParameter('method') && trim(Route::current()->getParameter('method')) != '')
+                return \Redirect::to(action($this->getClassName(true)."@index" , array('method' => Route::current()->getParameter('method'))));
+            else
+                return \Redirect::to(action($this->getClassName(true)."@index"));
         }
     }
 
@@ -192,7 +196,10 @@ class BaseCrudController extends \Shivergard\ApiDemo\PackageController {
 
             // redirect
             \Session::flash('message', 'Successfully updated!');
-            return \Redirect::to(action($this->getClassName(true)."@index"));
+            if (Route::current()->getParameter('method') && trim(Route::current()->getParameter('method')) != '')
+                return \Redirect::to(action($this->getClassName(true)."@index" , array('method' => Route::current()->getParameter('method'))));
+            else
+                return \Redirect::to(action($this->getClassName(true)."@index"));
         }
     }
 
