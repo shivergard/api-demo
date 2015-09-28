@@ -7,6 +7,7 @@ use \Input;
 use \Validator;
 use \File;
 use \Redirect;
+use \Route;
 
 class BaseCrudController extends \Shivergard\ApiDemo\PackageController {
 
