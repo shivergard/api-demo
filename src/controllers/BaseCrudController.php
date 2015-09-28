@@ -175,7 +175,7 @@ class BaseCrudController extends \Shivergard\ApiDemo\PackageController {
      * @param  int  $id
      * @return Response
      */
-    public function update($param1 , $param2){
+    public function update($param1 , $param2 = false){
 
         if (Route::current()->getParameter('method') && trim(Route::current()->getParameter('method')) != '')
             $id = $param2;
@@ -215,7 +215,7 @@ class BaseCrudController extends \Shivergard\ApiDemo\PackageController {
      * @param  int  $id
      * @return Response
      */
-    public function destroy($param1 , $param2){
+    public function destroy($param1 , $param2 = false){
         // delete
         if (Route::current()->getParameter('method') && trim(Route::current()->getParameter('method')) != '')
             $id = $param2;
