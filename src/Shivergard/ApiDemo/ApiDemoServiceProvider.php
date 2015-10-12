@@ -29,9 +29,6 @@ class ApiDemoServiceProvider extends ServiceProvider {
 
 		$this->publishes($publishData);
 
-		App::forgetMiddleware('Illuminate\Foundation\Http\Middleware\VerifyCsrfToken');
-		App::middleware('Shivergard\ApiDemo\VerifyCsrfToken');
-
 		require __DIR__ .'/../../routes.php';
 		$this->loadViewsFrom(__DIR__.'/../../views', 'api-demo');
 		$this->commands('Shivergard\ApiDemo\ApiDemoConsole');

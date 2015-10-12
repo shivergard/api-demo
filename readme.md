@@ -29,3 +29,5 @@ To get user creditals
   ¯\(°_o)/¯
    Mail: root@ApiDemo.dev
    Passowrd: api-demo
+
+http://laravel.io/forum/11-14-2014-disabling-the-csrf-middleware-in-laravel-5 - To enable Api
