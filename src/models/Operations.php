@@ -8,6 +8,6 @@ use Illuminate\Http\Request;
 
 class Operations extends \Shivergard\ApiDemo\BaseModel {
 
-    protected $table = 'api_params';
+    protected $table = 'api_operations';
 
 }
