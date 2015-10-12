@@ -15,9 +15,10 @@ class Operations extends Migration {
 		Schema::create('api_operations', function(Blueprint $table)
 		{
 			$table->increments('id');
-			$table->integer('method_id')->unsigned();
 			$table->string('name');
+			$table->integer('method_id')->unsigned();
 			$table->string('class_path');
+			$table->string('class_method');
 			$table->timestamps();
 		});
 	}

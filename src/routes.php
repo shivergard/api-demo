@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/public-demo/v1/' , 'Shivergard\ApiDemo\PublicApiDemoController@demo');
+Route::any('/api/v1/{method}' , 'Shivergard\ApiDemo\ApiController@apiCall');
 Route::get('/public-demo/v1/params' , 'Shivergard\ApiDemo\PublicApiDemoController@getParams');
 Route::get('/public-demo/v1/request' , 'Shivergard\ApiDemo\PublicApiDemoController@postRequest');
 Route::get('/api-demo/init' , 'Shivergard\ApiDemo\ApiDemoController@init');

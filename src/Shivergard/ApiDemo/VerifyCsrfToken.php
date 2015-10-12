@@ -37,7 +37,6 @@ class VerifyCsrfToken extends BaseVerifier {
 
     /**
      * This will return a bool value based on route checking.
-
      * @param  Request $request
      * @return boolean
      */
