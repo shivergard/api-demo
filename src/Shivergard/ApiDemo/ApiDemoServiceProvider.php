@@ -1,6 +1,7 @@
 <?php namespace Shivergard\ApiDemo;
 
 use Illuminate\Support\ServiceProvider;
+use App;
 
 class ApiDemoServiceProvider extends ServiceProvider {
 
