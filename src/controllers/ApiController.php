@@ -18,7 +18,7 @@ class ApiController extends \Shivergard\ApiDemo\PackageController {
         $op = Operations::where('name' , $method);
 
         if ($op->count() > 0){
-            $op->first();
+            $op = $op->first();
             $class = $op->class_path;
             $method = $op->class_method;
             $classObject = new $class();
