@@ -22,7 +22,7 @@ class ApiController extends \Shivergard\ApiDemo\PackageController {
             $class = $op->class_path;
             $method = $op->class_method;
             $classObject = new $class();
-            $return = $classObject->{$class_method}(Request::all());
+            $return = $classObject->{$method}(Request::all());
         }
 
         return \Response::json($return);
